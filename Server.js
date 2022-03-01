@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 
 SERVER = express();
-SERVER.listen(3000);
+SERVER.listen(process.env.PORT || 3000);
 SERVER.use(cors());
 SERVER.use(express.json());
 
