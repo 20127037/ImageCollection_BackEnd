@@ -4,7 +4,7 @@ const cors = require('cors');
 SERVER = express();
 SERVER.listen(process.env.PORT || 3000);
 const corsOptions ={
-	origin:'http://localhost:3000', 
+	origin:'https://icoth-backend.herokuapp.com/', 
 	credentials:true,            //access-control-allow-credentials:true
 	optionSuccessStatus:200
  }
