@@ -8,9 +8,9 @@ SERVER.use(express.json());
 
 const mssql = require('mssql');
 const dbConfig = {
-	user: 'sa',
-	password: 'Lnthuy29012002',
-	server: 'localhost',
+	server: 'lnthuy.database.windows.net',
+	user: 'lnthuy29012002',
+	password: 'Lnthuy@29012002',
 	database: 'Image_Collection',
 	pool: {
 		min: 0,
@@ -32,6 +32,14 @@ async function DB(command) {
 	}
 }
 
+// Handle request
+
+SERVER.get('/prompt',(req,res) => {
+	if(req.body.answer === '26/10/2019') {
+		res.send(JSON.stringify('true'))
+	}
+	else res.send(JSON.stringify('false'))
+})
 SERVER.get('/', (req, res) => {
 	console.log('Hello');
 	const stt = Math.floor(Math.random(0, 1) * 10 + 1)
@@ -39,6 +47,6 @@ SERVER.get('/', (req, res) => {
 })
 SERVER.put('/', (req, res) => {
 	DB(`update Images set numOfClick=${req.body.numOfClick} where imageURL='${req.body.imageURL}'`)
-		.then(res.send(JSON.stringify({ numOfClick: req.body.numOfClick })))
+		.then(res.send(JSON.stringify({ numOfClick: DB(`select numOfClick from Images where imageURL=${req.body.imageURL}`).then(res => res.recordset[0]) })))
 		.catch(error => console.log('Error here!', error))
 })
