@@ -3,7 +3,12 @@ const cors = require('cors');
 
 SERVER = express();
 SERVER.listen(process.env.PORT || 3000);
-SERVER.use(cors());
+const corsOptions ={
+	origin:'http://localhost:3000', 
+	credentials:true,            //access-control-allow-credentials:true
+	optionSuccessStatus:200
+ }
+SERVER.use(cors(corsOptions));
 SERVER.use(express.json());
 
 const mssql = require('mssql');
@@ -34,12 +39,12 @@ async function DB(command) {
 
 // Handle request
 
-SERVER.get('/prompt',(req,res) => {
-	if(req.body.answer === '26/10/2019') {
-		res.send(JSON.stringify('true'))
-	}
-	else res.send(JSON.stringify('false'))
-})
+// SERVER.get('/prompt',(req,res) => {
+// 	if(req.query.date === '26/10/2019') {
+// 		res.send(JSON.stringify({answer: 'true'}))
+// 	}
+// 	else res.send(JSON.stringify({answer: 'false'}))
+// })
 SERVER.get('/', (req, res) => {
 	console.log('Hello');
 	const stt = Math.floor(Math.random(0, 1) * 10 + 1)
