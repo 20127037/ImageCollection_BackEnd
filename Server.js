@@ -15,7 +15,7 @@ const dbConfig = {
 	pool: {
 		min: 0,
 		max: 10,
-		idleTimeoutMillis: 30000
+		idleTimeoutMillis: 1000
 	},
 	options: {
 		trustServerCertificate: true
