@@ -47,15 +47,15 @@ async function DB(command) {
 // })
 SERVER.get('/', (req, res) => {
 	console.log('I hear you!');
-	try {
-		const stt = Math.floor(Math.random(0, 1) * 10 + 1)
-		DB(`select * from Images where stt=${stt}`)
-		.then(obj => res.send(JSON.stringify(obj.recordset[0])))
-	}
-	catch (error) {
-		console.log('Cannot fetch data from Azure Database!')
-		throw error
-	}
+	// try {
+	// 	const stt = Math.floor(Math.random(0, 1) * 10 + 1)
+	// 	DB(`select * from Images where stt=${stt}`)
+	// 	.then(obj => res.send(JSON.stringify(obj.recordset[0])))
+	// }
+	// catch (error) {
+	// 	console.log('Cannot fetch data from Azure Database!')
+	// 	throw error
+	// }
 })
 SERVER.put('/', (req, res) => {
 	DB(`update Images set numOfClick=${req.body.numOfClick} where imageURL='${req.body.imageURL}'`)
