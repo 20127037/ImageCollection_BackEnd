@@ -27,7 +27,7 @@ const mssql = require('mssql');
 
 async function DB(command) {
 	try {
-		await mssql.connect('Server=tcp:lnthuy.database.windows.net,1433;Initial Catalog=Image_Collection;Persist Security Info=False;User ID=lnthuy29012002;Password={your_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;')
+		await mssql.connect('Server=tcp:lnthuy.database.windows.net,1433;Initial Catalog=Image_Collection;Persist Security Info=False;User ID=lnthuy29012002;Password=Lnthuy@29012002;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;')
 		const result = await mssql.query(command)
 		return result
 	}
