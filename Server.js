@@ -32,6 +32,7 @@ async function DB(command) {
 		return result
 	}
 	catch (err) {
+		console.log('Cannot connect to Azure Server!')
 		throw err
 	}
 }
@@ -45,8 +46,16 @@ async function DB(command) {
 // 	else res.send(JSON.stringify({answer: 'false'}))
 // })
 SERVER.get('/', (req, res) => {
-	const stt = Math.floor(Math.random(0, 1) * 10 + 1)
-	DB(`select * from Images where stt=${stt}`).then(obj => res.send(JSON.stringify(obj.recordset[0])))
+	console.log('I hear you!');
+	try {
+		const stt = Math.floor(Math.random(0, 1) * 10 + 1)
+		DB(`select * from Images where stt=${stt}`)
+		.then(obj => res.send(JSON.stringify(obj.recordset[0])))
+	}
+	catch (error) {
+		console.log('Cannot fetch data from Azure Database!')
+		throw error
+	}
 })
 SERVER.put('/', (req, res) => {
 	DB(`update Images set numOfClick=${req.body.numOfClick} where imageURL='${req.body.imageURL}'`)
