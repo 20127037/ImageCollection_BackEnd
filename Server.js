@@ -19,7 +19,8 @@ const dbConfig = {
 		idleTimeoutMillis: 30000
 	},
 	options: {
-		trustServerCertificate: true
+		encrypt: true,
+		trustServerCertificate: false
 	}
 }
 async function DB(command) {
