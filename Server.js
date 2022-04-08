@@ -46,7 +46,7 @@ async function DB(command) {
 // 	else res.send(JSON.stringify({answer: 'false'}))
 // })
 SERVER.get('/', (req, res) => {
-	console.log('I hear you!');
+	res.send("I hear you!")
 	// try {
 	// 	const stt = Math.floor(Math.random(0, 1) * 10 + 1)
 	// 	DB(`select * from Images where stt=${stt}`)
