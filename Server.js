@@ -42,14 +42,15 @@ async function DB(command) {
 // 	else res.send(JSON.stringify({answer: 'false'}))
 // })
 SERVER.get('/', (req, res) => {
-	res.setHeader("Access-Control-Allow-Origin", "*")
-	res.setHeader("Access-Control-Allow-Credentials", "true");
-	res.setHeader("Access-Control-Max-Age", "1800");
-	res.setHeader("Access-Control-Allow-Headers", "content-type");
-	res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" );
-	console.log('Hello');
-	const stt = Math.floor(Math.random(0, 1) * 10 + 1)
-	DB(`select * from Images where stt=${stt}`).then(obj => res.send(JSON.stringify(obj.recordset[0])))
+	// res.setHeader("Access-Control-Allow-Origin", "*")
+	// res.setHeader("Access-Control-Allow-Credentials", "true");
+	// res.setHeader("Access-Control-Max-Age", "1800");
+	// res.setHeader("Access-Control-Allow-Headers", "content-type");
+	// res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" );
+	// console.log('Hello');
+	// const stt = Math.floor(Math.random(0, 1) * 10 + 1)
+	// DB(`select * from Images where stt=${stt}`).then(obj => res.send(JSON.stringify(obj.recordset[0])))
+	res.send("Hello");
 })
 SERVER.put('/', (req, res) => {
 	DB(`update Images set numOfClick=${req.body.numOfClick} where imageURL='${req.body.imageURL}'`)
