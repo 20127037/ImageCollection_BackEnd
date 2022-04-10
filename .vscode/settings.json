@@ -1,0 +1,4 @@
+{
+     "appService.defaultWebAppToDeploy": "/subscriptions/60a9b81d-a128-4c92-82a2-2ba419667a51/resourceGroups/personal/providers/Microsoft.Web/sites/icoth-backend",
+     "appService.deploySubpath": "."
+}

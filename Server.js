@@ -1,43 +1,43 @@
 const express = require('express');
 const cors = require('cors');
 
-SERVER = express();
+SERVER = express.Router();
 const port = process.env.PORT || 3000;
 SERVER.listen(port, () => console.log('Server is starting on port: ', port));
 SERVER.use(cors());
 SERVER.use(express.json());
 
 const mssql = require('mssql');
-
 const dbConfig = {
 	server: 'lnthuy.database.windows.net',
 	user: 'lnthuy29012002',
 	password: 'Lnthuy@29012002',
 	database: 'Image_Collection',
+	port: 1433,
 	pool: {
 		min: 0,
 		max: 10,
-		idleTimeoutMillis: 30000
+		idleTimeoutMillis: 3000
 	},
 	options: {
 		encrypt: true,
+		enableArithAbort: true,
 		trustServerCertificate: false
 	}
 }
+const pool = new mssql.ConnectionPool(dbConfig);
 
 async function DB(command) {
 	try {
-		await mssql.connect(dbConfig)
+		await pool.connect()
 		const result = await mssql.query(command)
 		return result
 	}
-	catch (err) {
+	catch (error) {
 		console.log('Cannot connect to Azure Server!')
-		throw err
+		throw error
 	}
 }
-
-// Handle request
 
 // SERVER.get('/prompt',(req,res) => {
 // 	if(req.query.date === '26/10/2019') {
