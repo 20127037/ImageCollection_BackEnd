@@ -3,7 +3,7 @@ const cors = require('cors');
 
 SERVER = express.Router();
 const port = process.env.PORT || 3000;
-SERVER.listen(port, () => console.log('Server is starting on port: ', port));
+// SERVER.listen(port, () => console.log('Server is starting on port: ', port));
 SERVER.use(cors());
 SERVER.use(express.json());
 
