@@ -49,7 +49,10 @@ SERVER.get('/', (req, res) => {
 	try {
 		const stt = Math.floor(Math.random(0, 1) * 10 + 1)
 		DB(`select * from Images where stt=${stt}`)
-		.then(obj => res.send(JSON.stringify(obj.recordset[0])))
+		.then(obj => {
+			res.setHeader('Content-Type', 'application/json')
+			res.send(JSON.stringify(obj.recordset[0]))
+		})
 	}
 	catch (error) {
 		console.log('Cannot fetch data from Azure Database!')
@@ -58,6 +61,9 @@ SERVER.get('/', (req, res) => {
 })
 SERVER.put('/', (req, res) => {
 	DB(`update Images set numOfClick=${req.body.numOfClick} where imageURL='${req.body.imageURL}'`)
-		.then(res.send(JSON.stringify({ numOfClick: DB(`select numOfClick from Images where imageURL=${req.body.imageURL}`).then(res => res.recordset[0]) })))
+		.then(() => {
+			res.setHeader('Content-Type', 'application/json')
+			res.send(JSON.stringify({ numOfClick: DB(`select numOfClick from Images where imageURL=${req.body.imageURL}`).then(res => res.recordset[0]) }))
+		})
 		.catch(error => console.log('Error here!', error))
 })
